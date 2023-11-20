@@ -20,8 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware(['checkRole:admin'])->group(function () {
-   
-   
+
     Route::get('/cursos', [App\Http\Controllers\CursoController::class, 'index'])->name('cursos.index');
     Route::get('/cursos/create', [App\Http\Controllers\CursoController::class, 'create'])->name('cursos.create');
     Route::post('/cursos/store', [App\Http\Controllers\CursoController::class, 'store'])->name('cursos.store');

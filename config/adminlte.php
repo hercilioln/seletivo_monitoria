@@ -338,12 +338,6 @@ return [
             'url'  => '/eventos',
             'icon' => 'fa fa-newspaper',
         ],
-        ['header' => 'Gerenciamento'],
-        [
-            'text' => '2ª Via Certidão',
-            'url'  => '/certidao2',
-            'icon' => 'fas fa-file-alt',
-        ],
     ],
 
     /*

@@ -13,7 +13,7 @@ class InscricaoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class InscricaoRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'eventos_id' => 'required|exists:eventos,id',
+            'vagas_id' => 'required|exists:vagas,id',
+            'alunos_id' => 'required|exists:alunos,id',
+            'status' => 'required'
         ];
     }
 }

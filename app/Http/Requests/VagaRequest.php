@@ -13,7 +13,7 @@ class VagaRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class VagaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'eventos_id' => 'required|exists:eventos,id',
+            'cursos_id' => 'required|exists:cursos,id',
+            'disciplinas_id' => 'required|exists:disciplinas,id',
+            'quantidade' => 'required'
         ];
     }
 }

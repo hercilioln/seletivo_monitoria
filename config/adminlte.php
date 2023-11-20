@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Cartório Civil - Carutapera-MA',
+    'title' => 'Seletivo Monitoria - UNDB',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,8 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => 'UNDB',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -86,7 +85,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'vendor/adminlte/dist/img/logo-undb-1.webp',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -109,7 +108,7 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'vendor/adminlte/dist/img/logo-undb-1.webp',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
             'width' => 60,
@@ -325,14 +324,19 @@ return [
         
         ['header' => 'Cadastros'],
         [
-            'text' => 'Escreventes',
-            'url'  => '/escrevente',
-            'icon' => 'fa fa-users',
+            'text' => 'Cursos',
+            'url'  => '/cursos',
+            'icon' => 'fa fa-graduation-cap',
         ],
         [
-            'text' => 'Configuração Cartório',
-            'url'  => '/cartorio',
-            'icon' => 'fa fa-building',
+            'text' => 'Disciplina',
+            'url'  => '/disciplinas',
+            'icon' => 'fas fa-file-alt',
+        ],
+        [
+            'text' => 'Eventos',
+            'url'  => '/eventos',
+            'icon' => 'fa fa-newspaper',
         ],
         ['header' => 'Gerenciamento'],
         [

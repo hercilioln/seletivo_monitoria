@@ -13,7 +13,7 @@ class Evento extends Model
     protected $fillable = [
         'nome',
         'descricao',
-        'data_incial',
+        'data_inicial',
         'data_final',
         'arquivos'
     ];

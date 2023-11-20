@@ -25,6 +25,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('checkRole', function ($user, $role) {
+         
+            $allowedRoles = explode('|', $role);
+
+            return !in_array(auth()->user()->role, $allowedRoles);
+    
+
+        });
     }
 }

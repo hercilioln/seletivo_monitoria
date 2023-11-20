@@ -19,30 +19,30 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/cartorio', [App\Http\Controllers\ConfiguracaoCartorioController::class, 'index'])->name('cartorio.index');
-    Route::get('/cartorio/create', [App\Http\Controllers\ConfiguracaoCartorioController::class, 'create'])->name('cartorio.create');
-    Route::post('/cartorio/store', [App\Http\Controllers\ConfiguracaoCartorioController::class, 'store'])->name('cartorio.store');
-    Route::get('/cartorio/edit/{id}', [App\Http\Controllers\ConfiguracaoCartorioController::class, 'edit'])->name('cartorio.edit');
-    Route::put('/cartorio/update/{id}', [App\Http\Controllers\ConfiguracaoCartorioController::class, 'update'])->name('cartorio.update');
-    Route::delete('/cartorio/destroy/{id}', [App\Http\Controllers\ConfiguracaoCartorioController::class, 'destroy'])->name('cartorio.destroy');
+Route::middleware(['checkRole:admin'])->group(function () {
+   
+   
+    Route::get('/cursos', [App\Http\Controllers\CursoController::class, 'index'])->name('cursos.index');
+    Route::get('/cursos/create', [App\Http\Controllers\CursoController::class, 'create'])->name('cursos.create');
+    Route::post('/cursos/store', [App\Http\Controllers\CursoController::class, 'store'])->name('cursos.store');
+    Route::get('/cursos/edit/{id}', [App\Http\Controllers\CursoController::class, 'edit'])->name('cursos.edit');
+    Route::put('/cursos/update/{id}', [App\Http\Controllers\CursoController::class, 'update'])->name('cursos.update');
+    Route::delete('/cursos/destroy/{id}', [App\Http\Controllers\CursoController::class, 'destroy'])->name('cursos.destroy');
 
-    Route::get('/escrevente', [App\Http\Controllers\EscreventeController::class, 'index'])->name('escrevente.index');
-    Route::get('/escrevente/create', [App\Http\Controllers\EscreventeController::class, 'create'])->name('escrevente.create');
-    Route::post('/escrevente/store', [App\Http\Controllers\EscreventeController::class, 'store'])->name('escrevente.store');
-    Route::get('/escrevente/edit/{id}', [App\Http\Controllers\EscreventeController::class, 'edit'])->name('escrevente.edit');
-    Route::put('/escrevente/update/{id}', [App\Http\Controllers\EscreventeController::class, 'update'])->name('escrevente.update');
-    Route::delete('/escrevente/destroy/{id}', [App\Http\Controllers\EscreventeController::class, 'destroy'])->name('escrevente.destroy');
+    Route::get('/disciplinas', [App\Http\Controllers\DisciplinaController::class, 'index'])->name('disciplinas.index');
+    Route::get('/disciplinas/create', [App\Http\Controllers\DisciplinaController::class, 'create'])->name('disciplinas.create');
+    Route::post('/disciplinas/store', [App\Http\Controllers\DisciplinaController::class, 'store'])->name('disciplinas.store');
+    Route::get('/disciplinas/edit/{id}', [App\Http\Controllers\DisciplinaController::class, 'edit'])->name('disciplinas.edit');
+    Route::put('/disciplinas/update/{id}', [App\Http\Controllers\DisciplinaController::class, 'update'])->name('disciplinas.update');
+    Route::delete('/disciplinas/destroy/{id}', [App\Http\Controllers\DisciplinaController::class, 'destroy'])->name('disciplinas.destroy');
 
-    Route::get('/certidao2', [App\Http\Controllers\Certidao2Controller::class, 'index'])->name('certidao2.index');
-    Route::get('/certidao2/create', [App\Http\Controllers\Certidao2Controller::class, 'create'])->name('certidao2.create');
-    Route::post('/certidao2/store', [App\Http\Controllers\Certidao2Controller::class, 'store'])->name('certidao2.store');
-    Route::get('/certidao2/{id}', [App\Http\Controllers\Certidao2Controller::class, 'show'])->name('certidao2.show');
-    Route::get('/certidao2/edit/{id}', [App\Http\Controllers\Certidao2Controller::class, 'edit'])->name('certidao2.edit');
-    Route::put('/certidao2/update/{id}', [App\Http\Controllers\Certidao2Controller::class, 'update'])->name('certidao2.update');
-    Route::delete('/certidao2/destroy/{id}', [App\Http\Controllers\Certidao2Controller::class, 'destroy'])->name('certidao2.destroy');
-
-
+    Route::get('/eventos', [App\Http\Controllers\EventoController::class, 'index'])->name('eventos.index');
+    Route::get('/eventos/create', [App\Http\Controllers\EventoController::class, 'create'])->name('eventos.create');
+    Route::post('/eventos/store', [App\Http\Controllers\EventoController::class, 'store'])->name('eventos.store');
+    Route::get('/eventos/{id}', [App\Http\Controllers\EventoController::class, 'show'])->name('eventos.show');
+    Route::get('/eventos/edit/{id}', [App\Http\Controllers\EventoController::class, 'edit'])->name('eventos.edit');
+    Route::put('/eventos/update/{id}', [App\Http\Controllers\EventoController::class, 'update'])->name('eventos.update');
+    Route::delete('/eventos/destroy/{id}', [App\Http\Controllers\EventoController::class, 'destroy'])->name('eventos.destroy');
 
 });
 

@@ -1,1 +1,1 @@
-@extends('adminlte::auth.register')
+Página não existe

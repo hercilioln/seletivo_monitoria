@@ -20,10 +20,13 @@ class CheckRole
             return redirect('/login');
         }
 
-        $allowedRoles = explode('|', $role);
+        // Use os métodos isAdmin ou isAluno conforme necessário
+        if ($role === 'admin' && !$request->user()->isAdmin()) {
+            abort(403, 'Acesso não autorizado.');
+        }
 
-        if (!in_array(auth()->user()->role, $allowedRoles)) {
-            abort(403, 'Acesso não autorizado');
+        if ($role === 'aluno' && !$request->user()->isAluno()) {
+            abort(403, 'Acesso não autorizado.');
         }
 
         return $next($request);

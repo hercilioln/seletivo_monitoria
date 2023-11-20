@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEscreventesTable extends Migration
+class CreateInscricoesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateEscreventesTable extends Migration
      */
     public function up()
     {
-        Schema::create('escreventes', function (Blueprint $table) {
+        Schema::create('inscricoes', function (Blueprint $table) {
             $table->id();
-            $table->string('esc_nome');
+            $table->foreignId('eventos_id')->constrained('eventos');
+            $table->foreignId('vagas_id')->constrained('vagas');
+            $table->foreignId('alunos_id')->constrained('alunos');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ class CreateEscreventesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('escreventes');
+        Schema::dropIfExists('inscricoes');
     }
 }

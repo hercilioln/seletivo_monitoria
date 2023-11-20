@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Inscricao extends Model
+class Vaga extends Model
 {
     use HasFactory;
 
-    protected $table = 'inscricoes';
+    protected $table = 'vagas';
     protected $fillable = [
         'eventos_id',
-        'vagas_id',
-        'alunos_id',
-        'status'
+        'cursos_id',
+        'disciplinas_id',
+        'quantidade'
     ];
     
     public function evento()
@@ -22,13 +22,15 @@ class Inscricao extends Model
         return $this->belongsTo(Evento::class);
     }
 
-    public function vaga()
+    public function curso()
     {
-        return $this->belongsTo(Vaga::class);
+        return $this->belongsTo(Curso::class);
     }
 
-    public function aluno()
+    public function disciplina()
     {
-        return $this->belongsTo(Aluno::class);
+        return $this->belongsTo(Disciplina::class);
     }
+
+
 }

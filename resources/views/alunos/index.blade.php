@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Eventos')
+@section('title', 'Alunos')
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
@@ -8,7 +8,7 @@
 @stop
 
 @section('content_header')
-    <h1>Eventos</h1>
+    <h1>Alunos</h1>
 @stop
 
 @section('content')
@@ -19,26 +19,24 @@
 
 <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Itens Cadastrados</h3>
+    <h3 class="card-title">Itens Cadastrados</h3>
     </div>
     <div class="card-body">
-      <div class="dataTables_wrapper dt-bootstrap4">
+    <div class="dataTables_wrapper dt-bootstrap4">
         <div class="row">
-          <div class="col-sm-12">
+        <div class="col-sm-12">
             <table id="example" class="table table-bordered hover dataTable dtr-inline" aria-describedby="example1_info">
                 <thead>
                     <tr>
-                        <th>Curso</th>
-                        <th>Evento</th>
-                        <th>Data Inicial</th>
-                        <th>Data Final</th>
+                        <th>Nome</th>
+                        <th>Nome</th>
+                        <th>Nome</th>
                         <th class="text-right align-middle">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($eventos as $items)
                     <tr>
-                        <td class="align-middle">{{$items->cursos->nome}}</td>
                         <td class="align-middle">{{$items->nome}}</td>
                         <td class="align-middle">{{\Carbon\Carbon::parse($items->data_inicial)->format('d/m/Y') }}</td>
                         <td class="align-middle">{{\Carbon\Carbon::parse($items->data_final)->format('d/m/Y') }}</td>
@@ -58,11 +56,11 @@
                 </tbody>
             </table>
             
-          </div>
         </div>
-      </div>
+        </div>
     </div>
-  </div>
+    </div>
+</div>
 @stop
 
 @section('js')

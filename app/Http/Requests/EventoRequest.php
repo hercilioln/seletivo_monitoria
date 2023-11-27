@@ -24,6 +24,7 @@ class EventoRequest extends FormRequest
     public function rules()
     {
         return [
+            'cursos_id' => 'required|exists:cursos,id',
             'nome' => 'required|string|max:255',
             'descricao' => 'nullable|string',
             'data_inicial' => 'required',

@@ -16,10 +16,8 @@ class CreateVagasTable extends Migration
         Schema::create('vagas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('eventos_id')->constrained('eventos');
-            $table->foreignId('cursos_id')->constrained('cursos');
             $table->foreignId('disciplinas_id')->constrained('disciplinas');
-            $table->integer('quantidade');
-
+            $table->integer('quantidade')->default(1);
             $table->timestamps();
         });
     }

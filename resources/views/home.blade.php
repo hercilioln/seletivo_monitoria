@@ -17,6 +17,7 @@
         <div class="info-box-content">
             <span class="info-box-text">Eventos</span>
             <span class="info-box-number"> {{$eventos}} </span>
+           
         </div>
         </div>
     </div>

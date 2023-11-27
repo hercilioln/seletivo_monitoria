@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Eventos')
+@section('title', 'Vagas')
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
@@ -8,12 +8,12 @@
 @stop
 
 @section('content_header')
-    <h1>Eventos</h1>
+    <h1>Vagas</h1>
 @stop
 
 @section('content')
 <div class="d-flex justify-content-end mb-3">
-    <a href="{{ route('eventos.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Adicionar Evento</a>
+    <a href="{{ route('vagas.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Adicionar Vagas</a>
 </div>
 
 
@@ -28,29 +28,22 @@
             <table id="example" class="table table-bordered hover dataTable dtr-inline" aria-describedby="example1_info">
                 <thead>
                     <tr>
-                        <th>Curso</th>
-                        <th>Evento</th>
-                        <th>Data Inicial</th>
-                        <th>Data Final</th>
+                        <th>Nome</th>
                         <th class="text-right align-middle">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($eventos as $items)
+                    @foreach ($escreventes as $items)
                     <tr>
-                        <td class="align-middle">{{$items->cursos->nome}}</td>
-                        <td class="align-middle">{{$items->nome}}</td>
-                        <td class="align-middle">{{\Carbon\Carbon::parse($items->data_inicial)->format('d/m/Y') }}</td>
-                        <td class="align-middle">{{\Carbon\Carbon::parse($items->data_final)->format('d/m/Y') }}</td>
+                        <td class="align-middle">{{$items->esc_nome}}</td>
                         <td class="text-right align-middle">
                             <!-- Botão de editar -->
-                            <a href="{{ route('eventos.show', $items->id) }}" class="btn btn-sm btn-secondary mr-2"><i class="fa fa-eye"></i> Visualizar</a>
-                            <a href="{{ route('eventos.edit', $items->id) }}" class="btn btn-sm btn-warning mr-2"><i class="fa fa-edit"></i> Editar</a>
+                            <a href="{{ route('escrevente.edit', $items->id) }}" class="btn btn-sm btn-warning mr-2"><i class="fa fa-edit"></i> Editar</a>
                             <!-- Botão de excluir -->
-                            <form action="{{ route('eventos.destroy', $items->id) }}" method="POST" style="display: inline-block;">
+                            <form action="{{ route('escrevente.destroy', $items->id) }}" method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir este curso?')"><i class="fas fa-trash"></i> Excluir</button>
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir este escrevente?')"><i class="fas fa-trash"></i> Excluir</button>
                             </form>
                         </td>
                     </tr>

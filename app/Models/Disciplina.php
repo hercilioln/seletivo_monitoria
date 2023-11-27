@@ -12,4 +12,8 @@ class Disciplina extends Model
     protected $table = 'disciplinas';
     protected $fillable = ['nome'];
 
+    public function vagas()
+    {
+        return $this->hasMany(Vaga::class, 'disciplinas_id');
+    }
 }

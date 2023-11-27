@@ -13,9 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\EditalController::class, 'index']);
+Route::get('/editalview/{id}', [App\Http\Controllers\EditalController::class, 'show'])->name('edital.show');
 
 Auth::routes();
 
@@ -42,8 +41,25 @@ Route::middleware(['checkRole:admin'])->group(function () {
     Route::get('/eventos/edit/{id}', [App\Http\Controllers\EventoController::class, 'edit'])->name('eventos.edit');
     Route::put('/eventos/update/{id}', [App\Http\Controllers\EventoController::class, 'update'])->name('eventos.update');
     Route::delete('/eventos/destroy/{id}', [App\Http\Controllers\EventoController::class, 'destroy'])->name('eventos.destroy');
+    
+    Route::get('/vagas', [App\Http\Controllers\VagaController::class, 'index'])->name('vagas.index');
+    Route::get('/vagas/create/{eventoId}', [App\Http\Controllers\VagaController::class, 'create'])->name('vagas.create');
+    Route::post('/vagas/create/{eventoId}', [App\Http\Controllers\VagaController::class, 'store'])->name('vagas.store');
+    Route::get('/vagas/{id}', [App\Http\Controllers\VagaController::class, 'show'])->name('vagas.show');
+    Route::get('/vagas/edit/{id}', [App\Http\Controllers\VagaController::class, 'edit'])->name('vagas.edit');
+    Route::put('/vagas/update/{id}', [App\Http\Controllers\VagaController::class, 'update'])->name('vagas.update');
+    Route::delete('/vagas/destroy/{id}', [App\Http\Controllers\VagaController::class, 'destroy'])->name('vagas.destroy');
 
 });
 
+Route::middleware(['checkRole:admin'])->group(function () {
+    Route::get('/alunos', [App\Http\Controllers\AlunoController::class, 'index'])->name('alunos.index');
+});
 
+
+
+Route::get('/alunos/create', [App\Http\Controllers\AlunoController::class, 'create'])->name('alunos.create');
+Route::post('/alunos/store', [App\Http\Controllers\AlunoController::class, 'store'])->name('alunos.store');
+
+//Route::get('/editais', [App\Http\Controllers\EditalController::class, 'index'])->name('editais');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

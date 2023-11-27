@@ -7,6 +7,7 @@ use App\Models\Curso;
 use App\Models\Disciplina;
 use App\Models\Evento;
 use App\Models\Vaga;
+use DB;
 use Illuminate\Http\Request;
 
 class VagaController extends Controller
@@ -16,24 +17,23 @@ class VagaController extends Controller
         return view('vagas.index', compact('vagas'));
     }
 
-    public function create()
+    public function create($eventoId)
     {
-        $vagas = Vaga::all();
-        $evento = Evento::all();
-        $curso = Curso::all();
+        //$vagas = Vaga::all();
+        $evento = Evento::findOrFail($eventoId);
         $disciplina = Disciplina::all();
-        return view('vagas.create', compact('vagas', 'curso', 'evento', 'disciplinas'));
+        return view('vagas.create', compact(  'evento', 'disciplina', 'eventoId'));
     }
 
-    public function store(VagaRequest $request){
+    public function store(VagaRequest $request, $eventoId){
         try {
             DB::beginTransaction();
-            Vaga::create($request->validated());
+            Vaga::create($request->validated() + ['eventos_id' => $eventoId]);
             DB::commit();
-            return redirect()->route('vagas.index')->with('success', 'Registro criado com sucesso.');
+            return redirect()->route('eventos.show', $eventoId)->with('success', 'Registro criado com sucesso.');
         } catch (Exception $e) {
             DB::rollback();
-            return redirect()->route('vagas.index')->with('error', 'Erro ao criar o registro.');
+            return redirect()->back()->with('error', 'Erro ao criar o registro.');
         }
     }
 

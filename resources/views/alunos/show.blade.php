@@ -19,8 +19,8 @@
 <div class="invoice p-3 mb-3">
   <div class="row">
      <div class="col-12">
-        <h4 style="text-transform: uppercase;">
-           <i class="fas fa-globe"></i> {{$eventos->cursos->nome}} - {{$eventos->nome}}
+        <h4>
+           <i class="fas fa-globe"></i> {{$eventos->nome}}
         </h4>
      </div>
   </div>
@@ -59,18 +59,6 @@
           VAGAS
         </h4>
      </div>
-     <div class="d-flex justify-content-start mb-3">
-      <a href="{{ route('vagas.create', ['eventoId' => $eventos->id]) }}" class="btn btn-success">
-         <i class="fa fa-plus"></i> Adicionar Vaga
-     </a>
-    </div>
-  </div>
-  <div>
-   @forelse ($eventos->vagas as $vaga)
-   <li>{{ $vaga->disciplina->nome }} (Quantidade: {{ $vaga->quantidade }})</li>
-   @empty
-      <p>Nenhuma vaga associada a este evento.</p>
-   @endforelse
   </div>
 </div>
 

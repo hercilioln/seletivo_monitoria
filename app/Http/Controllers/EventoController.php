@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Evento;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\EventoRequest;
+use App\Models\Curso;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use DB;
@@ -15,12 +16,14 @@ class EventoController extends Controller
     {
 
         $eventos = Evento::all();
-        return view('eventos.index', compact('eventos'));
+        $curso = Curso::all();
+        return view('eventos.index', compact('eventos', 'curso'));
     }
 
     public function create()
     {
-        return view('eventos.create');        
+        $cursos = Curso::all();
+        return view('eventos.create', compact('cursos'));        
     }
 
     public function store(EventoRequest $request)

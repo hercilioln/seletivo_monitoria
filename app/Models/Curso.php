@@ -11,4 +11,9 @@ class Curso extends Model
     
     protected $table = 'cursos';
     protected $fillable = ['nome'];
+
+    public function eventos()
+    {
+        return $this->hasMany(Evento::class, 'cursos_id');
+    }
 }

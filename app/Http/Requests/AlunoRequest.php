@@ -27,7 +27,7 @@ class AlunoRequest extends FormRequest
             'user_id' => 'required|exists:users,id',
             'endereco' => 'required|string|max:255',
             'rg' => 'required|string|max:20',
-            'cpf' => 'required|cpf|unique:alunos,cpf',
+            'cpf' => 'required|unique:alunos,cpf',
             'matricula' => 'required|string|max:50',
             'telefone' => 'required|string|max:20',
             'historico' => 'required|file|mimes:pdf|max:16000',

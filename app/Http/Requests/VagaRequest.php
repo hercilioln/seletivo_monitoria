@@ -25,7 +25,6 @@ class VagaRequest extends FormRequest
     {
         return [
             'eventos_id' => 'required|exists:eventos,id',
-            'cursos_id' => 'required|exists:cursos,id',
             'disciplinas_id' => 'required|exists:disciplinas,id',
             'quantidade' => 'required'
         ];

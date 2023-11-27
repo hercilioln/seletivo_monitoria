@@ -24,4 +24,9 @@ class Aluno extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function inscricoes()
+{
+    return $this->hasMany(Inscricao::class);
+}
 }

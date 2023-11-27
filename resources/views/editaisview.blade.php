@@ -25,12 +25,33 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
-                </li>
-            </ul>
-        </div>
+         <ul class="navbar-nav ml-auto">
+             @guest
+                 <li class="nav-item">
+                     <a class="nav-link" href="/login">Login</a>
+                 </li>
+             @else
+                 <li class="nav-item">
+                     <span class="nav-link">Bem-vindo, {{ Auth::user()->name }}</span>
+                 </li>
+                 @if(Auth::user()->isAdmin())
+                     <!-- Exibir itens de menu específicos para admin -->
+                     <li class="nav-item">
+                         <a class="nav-link" href="#">Painel do Admin</a>
+                     </li>
+                 @elseif(Auth::user()->isAluno())
+                     <!-- Exibir itens de menu específicos para aluno -->
+                     <li class="nav-item">
+                         <a class="nav-link" href="#">Área do Aluno</a>
+                     </li>
+                 @endif
+                 <li class="nav-item">
+                     <a class="nav-link" href="/logout">Logout</a>
+                 </li>
+             @endguest
+         </ul>
+     </div>
+     
     </nav>
 
     <!-- Conteúdo da Tela Inicial -->
@@ -75,21 +96,46 @@
       </div>
     </div>
     <div class="invoice p-3 mb-3">
-      <div class="row">
-         <div class="col-12">
-            <h4>
-              VAGAS
-            </h4>
-         </div>
-      </div>
-      <div>
-        @forelse ($eventos->vagas as $vaga)
-        <li>{{ $vaga->disciplina->nome }} (Quantidade: {{ $vaga->quantidade }})</li>
-        @empty
-           <p>Nenhuma vaga associada a este evento.</p>
-        @endforelse
-       </div>
+    <div class="row">
+        <div class="col-12">
+            <h4>VAGAS</h4>
+        </div>
     </div>
+    <div>
+        @forelse ($eventos->vagas as $vaga)
+        <div class="col-md-6">
+         <div class="card mb-3">
+             <div class="card-body">
+                 <h5 class="card-title">{{ $vaga->disciplina->nome }}</h5>
+                 <p class="card-text">Vagas: {{ $vaga->quantidade }}</p>
+                 @if(auth()->check())
+                        @php
+                            $aluno = auth()->user()->aluno;
+                            $estaInscrito = $aluno->inscricoes->where('vagas_id', $vaga->id)->count();
+                        @endphp
+
+                        @if (!$estaInscrito)
+                            <form action="{{ route('inscricao.store') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="vagas_id" value="{{ $vaga->id }}">
+                                <input type="hidden" name="eventos_id" value="{{ $vaga->evento->id }}">
+                                <button type="submit" class="btn btn-primary">Inscrever-se</button>
+                            </form>
+                        @else
+                            <span class="text-success">Inscrito</span>
+                        @endif
+                    @else
+                        <a href="{{ route('login') }}" class="btn btn-primary">Inscrever-se</a>
+                    @endif
+             </div>
+         </div>
+     </div>
+        @empty
+            <p>Nenhuma vaga associada a este evento.</p>
+        @endforelse
+    </div>
+</div>
+
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>

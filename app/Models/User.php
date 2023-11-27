@@ -39,7 +39,7 @@ class User extends Authenticatable
         return $this->role === 'aluno';
     }
 
-    public function alunos()
+    public function aluno()
     {
         return $this->hasMany(Aluno::class, 'user_id');
     }

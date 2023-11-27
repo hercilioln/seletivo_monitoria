@@ -23,12 +23,12 @@ class AlunoController extends Controller
 
     public function store(AlunoRequest $request)
     {
-       
+        
         try {
             DB::beginTransaction();
     
             $nomeAluno = $request->input('user_name');
-
+            
             $nomeArquivo = Str::slug($nomeAluno) . '.' . $request->file('historico')->getClientOriginalExtension();
             $arquivoPath = $request->file('historico')->storeAs('alunos', $nomeArquivo, 'public');
             
@@ -51,7 +51,7 @@ class AlunoController extends Controller
             return redirect()->route('login')->with('success', 'Registro criado com sucesso.');
         } catch (Exception $e) {
             DB::rollback();
-            return redirect()->route('editais')->with('error', 'Erro ao criar o registro.');
+            return redirect()->back()->with('error', 'Erro ao criar o registro.');
         }
     }
 

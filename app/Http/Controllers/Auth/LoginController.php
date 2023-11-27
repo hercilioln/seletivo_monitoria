@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -37,4 +38,20 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    protected function authenticated(Request $request, $user)
+    {
+       // dd(Auth::user());
+
+        if ($user->isAdmin()) {
+            return redirect()->intended($this->redirectPath());
+        } elseif ($user->isAluno()) {
+            return redirect()->route('inicial');
+        } else {
+            // Lógica de redirecionamento padrão para outros tipos de usuários
+            return redirect()->intended($this->redirectPath());
+        }
+    }
+
+
 }

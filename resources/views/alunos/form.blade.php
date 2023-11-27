@@ -5,20 +5,25 @@
             <input type="text" class="form-control" id="user_name" name="user_name" placeholder="Nome Completo" 
             value="{{ old('user_name', isset($user) ? $user->name : '') }}">
         </div>
-     <div class="form-group col-md-3">
+        <div class="form-group col-md-3">
             <label for="rg">RG</label>
             <input type="text" class="form-control" id="rg" name="rg" placeholder="RG" 
             value="{{ old('rg', isset($alunos) ? $alunos->rg : '')  }}">
         </div>
-     <div class="form-group col-md-3">
+        <div class="form-group col-md-3">
             <label for="cpf">CPF</label>
             <input type="text" class="form-control" id="cpf" name="cpf" placeholder="000.000.000-00" 
             value="{{ old('cpf', isset($alunos) ? $alunos->cpf : '')  }}">
         </div>
-     <div class="form-group col-md-3">
+        <div class="form-group col-md-3">
             <label for="matricula">Matrícula</label>
             <input type="text" class="form-control" id="matricula" name="matricula" placeholder="000-000000" 
             value="{{ old('matricula', isset($alunos) ? $alunos->matricula : '')  }}">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="endereco">Endereco</label>
+            <input type="text" class="form-control" id="endereco" name="endereco" placeholder="" 
+            value="{{ old('endereco', isset($alunos) ? $alunos->endereco : '')  }}">
         </div>
     </div>
 
@@ -63,4 +68,4 @@
         var fileName = input.files[0].name;
         $(input).next('.custom-file-label').html(fileName);
     }
-    </script>
+</script>

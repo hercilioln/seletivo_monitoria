@@ -26,9 +26,36 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
-                </li>
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <span class="nav-link">Bem-vindo, {{ Auth::user()->name }}</span>
+                    </li>
+                    @if(Auth::user()->isAdmin())
+                        <!-- Exibir itens de menu específicos para admin -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('home')}}">Painel do Admin</a>
+                        </li>
+                    @elseif(Auth::user()->isAluno())
+                        <!-- Exibir itens de menu específicos para aluno -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('alunos.incricoes')}}">Minhas Inscrições</a>
+                        </li>
+                    @endif
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
+                        
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                    
+                @endguest
             </ul>
         </div>
     </nav>

@@ -13,12 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\EditalController::class, 'index']);
+Route::get('/', [App\Http\Controllers\EditalController::class, 'index'])->name('inicial');
 Route::get('/editalview/{id}', [App\Http\Controllers\EditalController::class, 'show'])->name('edital.show');
 
 Auth::routes();
 
 Route::middleware(['checkRole:admin'])->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::get('/cursos', [App\Http\Controllers\CursoController::class, 'index'])->name('cursos.index');
     Route::get('/cursos/create', [App\Http\Controllers\CursoController::class, 'create'])->name('cursos.create');
@@ -52,14 +53,20 @@ Route::middleware(['checkRole:admin'])->group(function () {
 
 });
 
-Route::middleware(['checkRole:admin'])->group(function () {
+Route::middleware(['checkRole:aluno'])->group(function () {
+    Route::get('incricoes', [App\Http\Controllers\MinhasInscricoesController::class, 'index'])->name('alunos.incricoes');
     Route::get('/alunos', [App\Http\Controllers\AlunoController::class, 'index'])->name('alunos.index');
+
+    Route::post('/inscricao/store', [App\Http\Controllers\InscricaoController::class, 'store'])->name('inscricao.store');
+
 });
 
 
+Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
 Route::get('/alunos/create', [App\Http\Controllers\AlunoController::class, 'create'])->name('alunos.create');
 Route::post('/alunos/store', [App\Http\Controllers\AlunoController::class, 'store'])->name('alunos.store');
 
+
 //Route::get('/editais', [App\Http\Controllers\EditalController::class, 'index'])->name('editais');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

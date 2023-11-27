@@ -24,7 +24,9 @@ class AlunoRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|exists:users,id',
+            'user_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8'],
             'endereco' => 'required|string|max:255',
             'rg' => 'required|string|max:20',
             'cpf' => 'required|unique:alunos,cpf',

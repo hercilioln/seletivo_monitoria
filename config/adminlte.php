@@ -338,6 +338,11 @@ return [
             'url'  => '/eventos',
             'icon' => 'fa fa-newspaper',
         ],
+        [
+            'text' => 'Inscrições',
+            'url'  => '/inscricoes',
+            'icon' => 'fa fa-newspaper',
+        ],
     ],
 
     /*

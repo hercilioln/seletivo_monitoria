@@ -73,6 +73,7 @@
             <table id="example" class="table table-bordered hover dataTable dtr-inline" aria-describedby="example1_info">
                 <thead>
                     <tr>
+                        <th>Curso</th>
                         <th>Edital</th>
                         <th>Datas de Inscrição</th>
                         <th class="text-right align-middle">Ações</th>
@@ -81,6 +82,7 @@
                 <tbody>
                     @foreach ($eventos as $items)
                     <tr>
+                        <td class="align-middle">{{$items->cursos->nome}}</td>
                         <td class="align-middle">{{$items->nome}}</td>
                         <td class="align-middle">de {{\Carbon\Carbon::parse($items->data_inicial)->format('d/m/Y') }} a {{\Carbon\Carbon::parse($items->data_final)->format('d/m/Y') }}</td>
                         <td class="text-right align-middle">

@@ -25,6 +25,11 @@ class Vaga extends Model
     {
         return $this->belongsTo(Disciplina::class, 'disciplinas_id');
     }
+    
+    public function inscricoes()
+    {
+        return $this->hasMany(Inscricao::class, 'vagas_id');
+    }
 
 
 }

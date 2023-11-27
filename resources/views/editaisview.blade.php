@@ -12,13 +12,11 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
-    <!-- Custom CSS or additional stylesheets -->
-    <!-- Add your own styles here -->
+
 
 </head>
 <body>
 
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/">UNDB</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,16 +35,22 @@
                  @if(Auth::user()->isAdmin())
                      <!-- Exibir itens de menu específicos para admin -->
                      <li class="nav-item">
-                         <a class="nav-link" href="#">Painel do Admin</a>
+                         <a class="nav-link" href="{{route('home')}}">Painel do Admin</a>
                      </li>
                  @elseif(Auth::user()->isAluno())
                      <!-- Exibir itens de menu específicos para aluno -->
                      <li class="nav-item">
-                         <a class="nav-link" href="#">Área do Aluno</a>
-                     </li>
+                        <a class="nav-link" href="{{route('alunos.incricoes')}}">Minhas Inscrições</a>
+                    </li>
                  @endif
                  <li class="nav-item">
-                     <a class="nav-link" href="/logout">Logout</a>
+                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        Logout
+                    </a>
+                    
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                  </li>
              @endguest
          </ul>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AlunoRequest;
 use App\Models\Aluno;
 use App\Models\User;
+use DB;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class AlunoController extends Controller
@@ -23,7 +25,7 @@ class AlunoController extends Controller
 
     public function store(AlunoRequest $request)
     {
-        
+        //dd($request->all());
         try {
             DB::beginTransaction();
     

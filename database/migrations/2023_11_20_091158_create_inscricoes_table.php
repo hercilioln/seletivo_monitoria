@@ -18,7 +18,7 @@ class CreateInscricoesTable extends Migration
             $table->foreignId('eventos_id')->constrained('eventos');
             $table->foreignId('vagas_id')->constrained('vagas');
             $table->foreignId('alunos_id')->constrained('alunos');
-            $table->boolean('status')->default(0);
+            $table->enum('status', ['aprovado', 'reprovado', 'pendente'])->default('pendente');
             $table->timestamps();
         });
     }

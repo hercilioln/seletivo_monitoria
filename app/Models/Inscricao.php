@@ -24,11 +24,11 @@ class Inscricao extends Model
 
     public function vaga()
     {
-        return $this->belongsTo(Vaga::class);
+        return $this->belongsTo(Vaga::class, 'vagas_id');
     }
 
     public function aluno()
     {
-        return $this->belongsTo(Aluno::class);
+        return $this->belongsTo(Aluno::class, 'alunos_id');
     }
 }

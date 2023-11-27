@@ -22,11 +22,11 @@ class Aluno extends Model
     
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function inscricoes()
 {
-    return $this->hasMany(Inscricao::class);
+    return $this->hasMany(Inscricao::class, 'alunos_id');
 }
 }

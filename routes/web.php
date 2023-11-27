@@ -51,6 +51,14 @@ Route::middleware(['checkRole:admin'])->group(function () {
     Route::put('/vagas/update/{id}', [App\Http\Controllers\VagaController::class, 'update'])->name('vagas.update');
     Route::delete('/vagas/destroy/{id}', [App\Http\Controllers\VagaController::class, 'destroy'])->name('vagas.destroy');
 
+    Route::get('/inscricoes', [App\Http\Controllers\InscricaoController::class, 'index'])->name('inscricoes.index');
+    Route::get('/inscricoes/create/{eventoId}', [App\Http\Controllers\InscricaoController::class, 'create'])->name('inscricoes.create');
+    Route::post('/inscricoes/create/{eventoId}', [App\Http\Controllers\InscricaoController::class, 'store'])->name('inscricoes.store');
+    Route::get('/inscricoes/{id}', [App\Http\Controllers\InscricaoController::class, 'show'])->name('inscricoes.show');
+    Route::get('/inscricoes/edit/{id}', [App\Http\Controllers\InscricaoController::class, 'edit'])->name('inscricoes.edit');
+    Route::put('/inscricoes/update/{id}', [App\Http\Controllers\InscricaoController::class, 'update'])->name('inscricoes.update');
+    Route::delete('/inscricoes/destroy/{id}', [App\Http\Controllers\InscricaoController::class, 'destroy'])->name('inscricoes.destroy');
+
 });
 
 Route::middleware(['checkRole:aluno'])->group(function () {

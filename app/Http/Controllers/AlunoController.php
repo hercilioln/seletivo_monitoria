@@ -25,7 +25,6 @@ class AlunoController extends Controller
 
     public function store(AlunoRequest $request)
     {
-        //dd($request->all());
         try {
             DB::beginTransaction();
     
